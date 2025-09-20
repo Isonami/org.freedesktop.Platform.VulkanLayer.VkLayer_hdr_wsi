@@ -1,0 +1,22 @@
+default-branch: "24.08"
+id: org.freedesktop.Platform.VulkanLayer.VkLayer_hdr_wsi
+runtime: org.freedesktop.Platform
+runtime-version: "24.08"
+sdk: org.freedesktop.Sdk
+build-extension: true
+build-options:
+  prefix: /usr/lib/extensions/vulkan/VkLayer_hdr_wsi
+modules:
+  - build-commands:
+      - sed -i "s!/usr/lib/!${FLATPAK_DEST}/lib/!" VkLayer_hdr_wsi.x86_64.json
+      - mkdir -p ${FLATPAK_DEST}/lib
+      - mkdir -p ${FLATPAK_DEST}/share/vulkan/implicit_layer.d/
+      - cp -r libVkLayer_hdr_wsi.so ${FLATPAK_DEST}/lib/
+      - cp -r VkLayer_hdr_wsi.x86_64.json ${FLATPAK_DEST}/share/vulkan/implicit_layer.d/
+    buildsystem: simple
+    name: VkLayer_hdr_wsi
+    sources:
+      - type: file
+        path: libVkLayer_hdr_wsi.so
+      - type: file
+        path: VkLayer_hdr_wsi.x86_64.json

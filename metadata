@@ -1,0 +1,4 @@
+[Extension]
+name=org.freedesktop.Platform.VulkanLayer.VkLayer_hdr_wsi
+description=VkLayer_hdr_wsi Extension
+version=1.0
