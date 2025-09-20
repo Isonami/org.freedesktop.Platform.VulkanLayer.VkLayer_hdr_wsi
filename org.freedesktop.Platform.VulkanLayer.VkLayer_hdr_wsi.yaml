@@ -7,16 +7,12 @@ build-extension: true
 build-options:
   prefix: /usr/lib/extensions/vulkan/VkLayer_hdr_wsi
 modules:
-  - build-commands:
-      - sed -i "s!/usr/lib/!${FLATPAK_DEST}/lib/!" VkLayer_hdr_wsi.x86_64.json
-      - mkdir -p ${FLATPAK_DEST}/lib
-      - mkdir -p ${FLATPAK_DEST}/share/vulkan/implicit_layer.d/
-      - cp -r libVkLayer_hdr_wsi.so ${FLATPAK_DEST}/lib/
-      - cp -r VkLayer_hdr_wsi.x86_64.json ${FLATPAK_DEST}/share/vulkan/implicit_layer.d/
-    buildsystem: simple
-    name: VkLayer_hdr_wsi
+  - name: VkLayer_hdr_wsi
+    buildsystem: meson
+    config-opts:
+      - -Dforce_fallback_for=vkroots
     sources:
-      - type: file
-        path: libVkLayer_hdr_wsi.so
-      - type: file
-        path: VkLayer_hdr_wsi.x86_64.json
+      - type: git
+        url: https://github.com/Zamundaaa/VK_hdr_layer.git
+        branch: main
+

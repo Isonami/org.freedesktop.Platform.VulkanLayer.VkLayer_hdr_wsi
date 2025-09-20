@@ -1,4 +1,2 @@
-*.so
-*.json
 .flatpak-builder/*
 build-dir/*
